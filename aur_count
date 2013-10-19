@@ -1,0 +1,19 @@
+#!/bin/bash
+for (( ;; )); do
+aurcnt=$(cower -u | wc -l)
+if [ -z $aurcnt ]; then
+aurcnt=0
+fi
+
+paccnt=$(pacman -Qu | wc -l)
+if [ -z $paccnt ]; then
+paccnt=0
+fi
+
+case "$1" in
+p) echo -e $paccnt
+;;
+a) echo -e $aurcnt
+esac
+sleep 15m
+done

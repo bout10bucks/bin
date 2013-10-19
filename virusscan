@@ -1,0 +1,36 @@
+#!/bin/bash
+echo "Bash Virus Scan"
+echo -e "What drive do you want me to scan?"
+read media
+cdate=$(date +%Y.%m.%d-%H.%M)
+
+function progress(){
+echo -n "Please wait..."
+while true
+do
+     echo -n "."
+     sleep 5
+done
+}
+trap "kill $!; printf 'Quitting\n'" SIGINT
+### Start FProt
+echo "Scanning with F-Prot"
+
+progress &
+MYSELF=$!
+
+fpscan $media -y --adware 2>&1 | sed 's/Scanning://g' >> vscan_$cdate
+
+kill $MYSELF &>/dev/null
+printf "...done\n"
+### Start ClamAV
+echo -n 'Scanning with ClamAV'
+
+progress &
+
+MYSELF=$!
+
+clamscan $media -ir --remove=yes &>> vscan_$cdate
+
+kill $MYSELF &>/dev/null
+echo -n '...done\n'
