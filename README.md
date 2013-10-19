@@ -1,0 +1,4 @@
+bin
+===
+
+short (sloppy) scripts
