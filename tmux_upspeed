@@ -1,0 +1,15 @@
+#!/bin/bash
+
+INTERFACE="wlp3s0"
+
+TXB=$(</sys/class/net/$INTERFACE/statistics/tx_bytes)
+sleep 1 
+TXBN=$(</sys/class/net/$INTERFACE/statistics/tx_bytes)
+TXDIF=$(echo $((TXBN - TXB)) )
+
+if [ $TXDIF < 1024 ]; then
+ echo -e "$((TXDIF / 1024))K"
+else
+ echo -e "$((TXDIF / 1024 / 1024))M"
+fi
+#echo -e "$((TXDIF / 1024 / 2))"

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+INTERFACE="wlp3s0"
+
+RXB=$(</sys/class/net/$INTERFACE/statistics/rx_bytes)
+sleep 1
+RXBN=$(</sys/class/net/$INTERFACE/statistics/rx_bytes)
+RXDIF=$(echo $((RXBN - RXB)) )
+
+if [ $RXDIF < 1024 ]; then
+ echo -e "$((RXDIF / 1024))K"
+else
+ echo -e "$((RXDIF / 1024 / 1024))M"
+fi
+#echo -e "$((RXDIF / 1024 / 2))"
