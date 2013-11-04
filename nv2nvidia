@@ -4,6 +4,6 @@
 sudo pacman --noconfirm -Rdds nouveau-dri xf86-video-nouveau lib32-nouveau-dri mesa-libgl
 sudo pacman --noconfirm -S nvidia{,-utils} lib32-nvidia-utils
 
+sudo mv /etc/X11/xorg.conf.d/20-nouveau.conf{,.bkup}
+sudo mv /etc/X11/xorg.conf.d/20-nvidia.conf{.bkup,}
 #/usr/bin/sudo /bin/rm /etc/X11/xorg.conf.d/{10-monitor,20-nouveau}.conf
-
-#sudo mkinitcpio -p linux
