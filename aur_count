@@ -13,6 +13,6 @@ fi
 case "$1" in
 p) echo -e $paccnt > /tmp/paccnt
 ;;
-a) echo -e $aurcnt > /tmp/paccnt
+a) echo -e $aurcnt > /tmp/aurcnt
 esac
 done
