@@ -1,5 +1,5 @@
 #!/bin/bash
-for (( ;; )); do
+
 aurcnt=$(cower -u | wc -l)
 if [ -z $aurcnt ]; then
 aurcnt=0
@@ -15,4 +15,3 @@ p) echo -e $paccnt > /tmp/paccnt
 ;;
 a) echo -e $aurcnt > /tmp/aurcnt
 esac
-done
