@@ -11,9 +11,8 @@ paccnt=0
 fi
 
 case "$1" in
-p) echo -e $paccnt
+p) echo -e $paccnt > /tmp/paccnt
 ;;
-a) echo -e $aurcnt
+a) echo -e $aurcnt > /tmp/paccnt
 esac
-sleep 15m
 done
