@@ -1,6 +1,10 @@
 #!/bin/bash
 
+if [[ $HOSTNAME == arch ]]; then
+INTERFACE="eth0"
+else
 INTERFACE="wlp3s0"
+fi
 
 human_readable ()
 {
