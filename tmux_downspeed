@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INTERFACE="eth0"
+INTERFACE="wlp3s0"
 
 human_readable ()
 {
@@ -21,4 +21,8 @@ sleep 1
 RXBN=$(</sys/class/net/$INTERFACE/statistics/rx_bytes)
 RXDIF=$(echo $((RXBN - RXB)) )
 
+if [ -z $(human_readable $RXDIF) ];then
+echo "v0B"
+else
 echo -e $(human_readable $RXDIF)
+fi

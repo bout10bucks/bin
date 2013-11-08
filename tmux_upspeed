@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INTERFACE="eth0"
+INTERFACE="wlp3s0"
 
 human_readable ()
 {
@@ -11,7 +11,6 @@ awk -v x=$1 'BEGIN{
 	for(i=5;y < 1;i--)
 	    y = x / (2**(10*i))
 
-
 	printf "^\%.0f",y; print type[i+2]
 }'
 }
@@ -21,4 +20,8 @@ sleep 1
 TXBN=$(</sys/class/net/$INTERFACE/statistics/tx_bytes)
 TXDIF=$(echo $((TXBN - TXB)) )
 
+if [ -z $(human_readable $TXDIF) ];then
+echo "^0B"
+else
 echo -e $(human_readable $TXDIF)
+fi
