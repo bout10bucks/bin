@@ -1,0 +1,6 @@
+#! /bin/sh
+bg="#E17A7A"
+fg="#383838"
+
+dmenu -nf "$bg" -nb "$bg" -sf "$fg" -sb "$bg" -p "[sudo] password for $USER:"<&-
+echo
