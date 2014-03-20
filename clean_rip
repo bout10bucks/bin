@@ -1,0 +1,28 @@
+#!/bin/bash
+
+copy () {
+# /dev for drive DVD is located
+DEV=sr0
+
+# Disc name (udev)
+DVD_NAME=$(udevadm info -n $DEV -q property | sed -n 's/^ID_FS_LABEL=//p')
+
+#copy disc
+vobcopy -mvo .tmp/
+
+cd .tmp/$DVD_NAME
+
+INPUT=.
+FILE_NAME=$DVD_NAME
+}
+
+if [[ -z "$1" ]]; then
+
+copy
+
+else
+
+INPUT=$1
+FILE_NAME=$($1 | awk 
+
+HandBrakeCLI -i $INPUT -o /media/Video/$FILE_NAME -Z "Normal" -X 1280 -O -m -5 -N eng --native-dub -s scan --subtitle-default 1 -F
