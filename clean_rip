@@ -1,6 +1,6 @@
 #!/bin/bash
 
-copy () {
+copy_disc () {
 # /dev for drive DVD is located
 DEV=sr0
 
@@ -18,11 +18,11 @@ FILE_NAME=$DVD_NAME
 
 if [[ -z "$1" ]]; then
 
-copy
+copy_disc
 
 else
 
 INPUT=$1
-FILE_NAME=$($1 | awk 
+FILE_NAME=${1##*/}
 
-HandBrakeCLI -i $INPUT -o /media/Video/$FILE_NAME -Z "Normal" -X 1280 -O -m -5 -N eng --native-dub -s scan --subtitle-default 1 -F
+HandBrakeCLI -i $INPUT -o "/media/Video/$FILE_NAME" -Z "Normal" -X 1280 -f mp4 -O -m -5 -N eng --native-dub -s scan --subtitle-default 1 -F
