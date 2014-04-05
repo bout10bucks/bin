@@ -13,7 +13,8 @@ vobcopy -mvo .tmp/
 cd .tmp/$DVD_NAME
 
 INPUT=.
-FILE_NAME=$DVD_NAME
+FILE_NAME=$(read -ra lname <<< $(echo ${DVD_NAME,,} | sed 's/_/\ /g')&& echo "${lname[@]^}")
+#FILE_NAME=$DVD_NAME
 }
 
 if [[ -z "$1" ]]; then
