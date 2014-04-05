@@ -27,4 +27,4 @@ FILE_NAME_NOPATH=${1##*/}
 FILE_NAME=${FILE_NAME_NOPATH%\.*}
 fi
 
-HandBrakeCLI -i "$INPUT" -o /media/Video/"$FILE_NAME".mp4 -Z "Normal" -X 1280 -f mp4 -O -m -5 -N eng --native-dub -s scan --subtitle-default 1 -F
+HandBrakeCLI -i "$INPUT" -o /media/Video/"$FILE_NAME.mp4" -Z "Normal" -X 1280 -f mp4 -O -m -5 -N eng --native-dub -s scan,1 --subtitle-default 1 -F
