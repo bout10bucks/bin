@@ -1,0 +1,9 @@
+#!/bin/bash
+#Move pictures to a working dir on same physical disk as final for jhead
+mv /home/bout10bucks/Dropbox/Camera\ Uploads/* /media/Video/tmp
+
+YEAR=$(ls /media/Video/tmp | awk -F "[.-]" '{print $1}'| sort -u)
+
+jhead -n/media/Video/Pictures/%Y/%m/%Y.%m.%d-%H.%M.%S /media/Video/tmp/*
+
+s3cmd sync -r /media/Video/Pictures/$YEAR s3://bout10bucks/Pictures/
