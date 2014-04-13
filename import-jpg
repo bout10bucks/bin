@@ -1,2 +1,0 @@
-#!/bin/bash
-jhead -n/home/bout10bucks/Dropbox/Pictures/%Y/%m/%Y.%m.%d-%H.%M.%S $@
