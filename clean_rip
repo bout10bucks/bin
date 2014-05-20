@@ -10,6 +10,8 @@ DVD_NAME=$(udevadm info -n $DEV -q property | sed -n 's/^ID_FS_LABEL=//p')
 #copy disc
 vobcopy -mvo .tmp/
 
+TITLE=$(lsdvd .tmp/$DVD_NAME 2>/dev/null | awk '/Longest/ {print $3}')
+
 cd .tmp/$DVD_NAME
 
 INPUT=.
@@ -28,4 +30,5 @@ FILE_NAME_NOPATH=${1##*/}
 FILE_NAME=${FILE_NAME_NOPATH%\.*}
 fi
 
-HandBrakeCLI -i "$INPUT" -o /media/Video/"$FILE_NAME.mp4" -Z "Normal" -X 1280 -f mp4 -O -m -5 -N eng --native-dub -s scan,1 --subtitle-default 1 -F
+SUB=$(lsdvd -st $TITLE /dev/sr0 | awk '/Subtitle/&&/English/ {print $2}' | sed 's/,//g')
+HandBrakeCLI -i "$INPUT" -o /media/Video/"$FILE_NAME.mp4" -Z "Normal" -X 1280 -f mp4 -t $TITLE -O -m -5 -N eng --native-dub -s scan,$SUB --subtitle-default 1 -F
