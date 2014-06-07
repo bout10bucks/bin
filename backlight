@@ -1,8 +1,0 @@
-#!/bin/bash
-  	float=`xbacklight`
-  	int=${float/\.*}
-  	if [[ $int -eq 0 ]]; then
-	     xbacklight -set 90
-	else
-	     xbacklight -set 0
-	fi

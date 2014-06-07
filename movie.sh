@@ -13,7 +13,4 @@ HandBrakeCLI -i "$input" -o "/media/Video/$name.mp4" -Z "Normal" $title --min-du
 #eject /dev/sr0 &&
 ##Uncomment to show a popup after encoding
 #notify-send "Rip Done"
-##Uncomment to send email after encoding
-#echo "Your encoding $name, has finished" | mutt -s "$name has finished" bout10bucks@gmail.com
-##Uncomment to send a text to an ATT phone after encoding
-notify-send "$(echo "Your encoding $name has finished")"
+

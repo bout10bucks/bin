@@ -1,0 +1,20 @@
+#!/bin/bash
+#Move pictures to a working dir on same physical disk as final for jhead
+mv /home/bout10bucks/Dropbox/Camera\ Uploads/* /media/Video/tmp
+
+#Get year and month from file name
+YEAR=$(ls /media/Video/tmp | awk -F "[.-]" '{print $1}'| sort -u)
+MONTH=$(ls /media/Video/tmp | awk -F "[.-]" '{print $2}' | sort -u)
+
+# Move picures and rename based on EXIF
+jhead -n/media/Video/Pictures/%Y/%m/%Y.%m.%d-%H.%M.%S /media/Video/tmp/*
+
+# Move videos that aren't handled by jhead
+for FILE_MONTH in $YEAR-$MONTH; do
+mv $YEAR-$MONTH*.mp4 /media/Video/Pictures/$YEAR/$MONTH/
+done
+
+#run for each sync the year to s3
+for FILE_YEAR in $YEAR; do
+s3cmd sync -r /media/Video/Pictures/$FILE_YEAR s3://bout10bucks/Pictures/
+done
