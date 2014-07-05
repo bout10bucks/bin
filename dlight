@@ -1,0 +1,4 @@
+#!/bin/bash
+current=$(light -G)
+step=$(printf %"s0\n" {1..10} | dmenu -p "Please select a brightness level: (currently $current%)")
+light -S $step
