@@ -1,0 +1,8 @@
+#!/bin/bash
+ip=$(curl ipecho.net/plain)
+date=$(date "+ %c")
+if [ -z "$ip" ]; then
+  exit 404
+else
+  echo $ip $date > /home/bout10bucks/Dropbox/ip-update.txt
+fi
