@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ !z $1 ]]; then
+    name=$(date +%F_%T).txt
+else
+    name=$1.txt
+fi
