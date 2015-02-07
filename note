@@ -5,4 +5,4 @@ if [[ -z "$1" ]]; then
 else
     name=$1.txt
 fi
-$EDITOR $name
+$EDITOR ~/Dropbox/Notes/$name
